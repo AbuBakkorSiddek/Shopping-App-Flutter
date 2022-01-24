@@ -31,7 +31,7 @@ class _PersonState extends State<Person> {
                     SizedBox(
                       width: 10,
                     ),
-                    Text('Siddek')
+                    Text('SIDDEK')
                   ],
                 ),
               )),
@@ -54,7 +54,6 @@ class _PersonState extends State<Person> {
                      licon: Icons.favorite,
                       color: Colors.red,
                       title: 'Wishlist',
-                      subtitle: 'SubTitle',
                     ticon: Icons.arrow_forward_ios,
                     ticonCallback: (){},
                   ),
@@ -64,7 +63,6 @@ class _PersonState extends State<Person> {
                     licon: Icons.shopping_cart,
                     color: Colors.blue,
                     title: 'Cart',
-                    subtitle: 'SubTitle',
                     ticon: Icons.arrow_forward_ios,
                     ticonCallback: (){},
                   ),
@@ -119,7 +117,7 @@ class _PersonState extends State<Person> {
                     onTap: (){},
                     licon: Icons.local_shipping_outlined,
                     color: Colors.pink,
-                    title: 'Address',
+                    title: 'Panthapath,Dhaka-1205',
                     subtitle: 'address',
                     ticon: Icons.arrow_forward_ios,
                     ticonCallback: (){},
@@ -191,7 +189,7 @@ class _card extends StatelessWidget {
 
         ),
         title:  Text(title),
-        subtitle: Text(subtitle!),
+        subtitle:subtitle ==null?null : Text(subtitle!),
         onTap: onTap,
         trailing: IconButton(
           icon: Icon(ticon),
