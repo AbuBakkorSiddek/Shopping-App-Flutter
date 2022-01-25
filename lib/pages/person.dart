@@ -10,177 +10,220 @@ class Person extends StatefulWidget {
 }
 
 class _PersonState extends State<Person> {
+  double top = 0;
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    _scrollController.addListener(() {
+      setState(() {});
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: [
-          CustomScrollView(
-            slivers: [
-              SliverAppBar(
-                  pinned: true,
-                  stretch: true,
-                  centerTitle: true,
-                  expandedHeight: 200,
-                  flexibleSpace: FlexibleSpaceBar(
+        body: Stack(
+      children: [
+        CustomScrollView(
+          controller: _scrollController,
+          slivers: [
+            SliverAppBar(
+                pinned: true,
+                stretch: true,
+                expandedHeight: 200,
+                flexibleSpace:LayoutBuilder(builder: (ctx , cons){
+                  top=cons.biggest.height;
+                  return FlexibleSpaceBar(
+                    centerTitle: true,
                     background: Image.asset(
                       'images/back.jpg',
                       fit: BoxFit.cover,
                     ),
-                    title: Row(
-                      children: [
-                        CircleAvatar(backgroundImage: AssetImage('images/sm.jpg')),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text('SIDDEK')
-                      ],
+                    title: AnimatedOpacity(
+                      duration: Duration(milliseconds: 3000),
+                      opacity: top <= 200 ? 1.0 : 0.0,
+                      child: Row(
+                        children: const [
+                          SizedBox(
+                            height:10,
+                            width: 12,
+                          ),
+                          CircleAvatar(
+                              backgroundImage: AssetImage('images/sm.jpg')),
+                          SizedBox(
+                            width: 12,
+                          ),
+                          Text('SIDDEK')
+                        ],
+                      ),
                     ),
-                  )),
-              SliverToBoxAdapter(
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 10.0),
-                  child: ListView(
-                    primary: false,
-                    shrinkWrap: true,
-                    children:  [
+                  );
 
-                      //User Bag
+                }),
+            ),
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10.0),
+                child: ListView(
+                  primary: false,
+                  shrinkWrap: true,
+                  children: [
+                    //User Bag
 
-                      const _usertilText(text: 'User Bag',),
-                      const SizedBox(
-                        height: 10,
+                    const _usertilText(
+                      text: 'User Bag',
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    _card(
+                      onTap: () {},
+                      licon: Icons.favorite,
+                      color: Colors.red,
+                      title: 'Wishlist',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
+
+                    _card(
+                      onTap: () {},
+                      licon: Icons.shopping_cart,
+                      color: Colors.blue,
+                      title: 'Cart',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    Text('User Setting'),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    Card(
+                        child: SwitchListTile.adaptive(
+                      secondary: Icon(
+                        Icons.light_mode,
+                        color: Colors.yellowAccent,
                       ),
-                      _card(
-                        onTap: (){},
-                        licon: Icons.favorite,
-                        color: Colors.red,
-                        title: 'Wishlist',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
-
-                      _card(
-                        onTap: (){},
-                        licon: Icons.shopping_cart,
-                        color: Colors.blue,
-                        title: 'Cart',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
-
-                      SizedBox(height: 10,),
-
-                      Text('User Setting'),
-
-                      SizedBox(height: 10,),
-
-                      Card(
-                          child: SwitchListTile.adaptive(
-                            secondary: Icon(Icons.light_mode,color: Colors.yellow,),
-                            title: Text('Light Mode'),
-                            value: false,
-                            onChanged: (value){},
-                          )
-
-                      ),
-
-                      SizedBox(height: 10,),
-
-                      Text('User Information'),
-
-                      SizedBox(height: 10,),
-
-                      _card(
-                        onTap: (){},
-                        licon: Icons.email_outlined,
-                        color: Colors.red,
-                        title: 'siddek7277@gmail',
-                        subtitle: 'Email',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
-
-                      SizedBox(height: 10,),
-
-                      _card(
-                        onTap: (){},
-                        licon: Icons.phone_outlined,
-                        color: Colors.green,
-                        title: '01640302039',
-                        subtitle: 'Phone Number',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
-
-                      SizedBox(height: 10,),
-
-                      _card(
-                        onTap: (){},
-                        licon: Icons.local_shipping_outlined,
-                        color: Colors.pink,
-                        title: 'Panthapath,Dhaka-1205',
-                        subtitle: 'address',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
-
-                      SizedBox(height: 10,),
+                      title: Text('Light Mode'),
+                      value: false,
+                      onChanged: (value) {},
+                    )),
 
 
-                      _card(
-                        onTap: (){},
-                        licon: Icons.access_time,
-                        color: Colors.blue,
-                        title: '1-1-2022',
-                        subtitle: 'Join Date',
-                        ticon: Icons.arrow_forward_ios,
-                        ticonCallback: (){},
-                      ),
+                    Text('User Information'),
 
-                      SizedBox(height: 10,),
+                    SizedBox(
+                      height: 10,
+                    ),
+
+                    _card(
+                      onTap: () {},
+                      licon: Icons.email,
+                      color: Colors.yellow,
+                      title: 'siddek7277@gmail',
+                      subtitle: 'Email',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
 
 
 
+                    _card(
+                      onTap: () {},
+                      licon: Icons.phone_outlined,
+                      color: Colors.green,
+                      title: '01640302039',
+                      subtitle: 'Phone Number',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
 
 
-                    ],
-                  ),
+
+                    _card(
+                      onTap: () {},
+                      licon: Icons.location_on_outlined,
+                      color: Colors.pink,
+                      title: 'Panthapath,Dhaka-1205',
+                      subtitle: 'address',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
+
+
+                    _card(
+                      onTap: () {},
+                      licon: Icons.access_time,
+                      color: Colors.deepPurpleAccent,
+                      title: '1-1-2022',
+                      subtitle: 'Join Date',
+                      ticon: Icons.arrow_forward_ios,
+                      ticonCallback: () {},
+                    ),
+
+                    SizedBox(
+                      height: 10,
+                    ),
+                  ],
                 ),
-              )
-            ],
-          ),
+              ),
+            )
+          ],
+        ),
 
-          //Camera & gallery
-          floating_cam(),
-
-
-        ],
-      )
-    );
+        //Camera & gallery
+        floating_cam(),
+      ],
+    ));
   }
-}
 
-class floating_cam extends StatelessWidget {
-  const floating_cam({
-    Key? key,
-  }) : super(key: key);
+  Widget floating_cam() {
+    double defaultMargin = 195;
+    double scrollstart = 165;
 
-  @override
-  Widget build(BuildContext context) {
+    double scrollEnd = scrollstart / 2;
+
+    double top = defaultMargin;
+
+    double scale = 1.0;
+
+    if (_scrollController.hasClients) {
+      double offSet = _scrollController.offset;
+      top -= offSet;
+
+      if (offSet < defaultMargin - scrollstart) {
+        scale = 1;
+      } else if (offSet < defaultMargin - scrollEnd) {
+        scale = (defaultMargin - scrollEnd - offSet) / scrollEnd;
+      } else {
+        scale = 0;
+      }
+    }
+
     return Positioned(
-      top: 195,
-        right: 30,
-        child: FloatingActionButton(
-          onPressed: (){},
-          child: Icon(Icons.camera),
-        )
-    );
+        top: top,
+        right: 10,
+        child: Transform(
+          transform: Matrix4.identity()..scale(scale),
+          alignment: Alignment.center,
+          child: FloatingActionButton(
+            onPressed: () {},
+            child: Icon(Icons.camera),
+          ),
+        ));
   }
 }
 
 class _card extends StatelessWidget {
-
   final IconData licon;
   final Color color;
   final String title;
@@ -189,34 +232,27 @@ class _card extends StatelessWidget {
   final VoidCallback? ticonCallback;
   final VoidCallback? onTap;
 
-
   const _card({
-
-
-     this.ticon,
-     this.subtitle,
-     this.ticonCallback,
-     this.onTap,
-
+    this.ticon,
+    this.subtitle,
+    this.ticonCallback,
+    this.onTap,
     Key? key,
     required this.licon,
     required this.title,
     required this.color,
-
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
       child: ListTile(
-        leading:
-        Icon(
+        leading: Icon(
           licon,
-          color:color,
-
+          color: color,
         ),
-        title:  Text(title),
-        subtitle:subtitle ==null?null : Text(subtitle!),
+        title: Text(title),
+        subtitle: subtitle == null ? null : Text(subtitle!),
         onTap: onTap,
         trailing: IconButton(
           icon: Icon(ticon),
@@ -227,11 +263,7 @@ class _card extends StatelessWidget {
   }
 }
 
-
-
-
 class _usertilText extends StatelessWidget {
-
   final String text;
 
   const _usertilText({
