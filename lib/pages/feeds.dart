@@ -10,6 +10,7 @@ class Feeds extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
 
+      appBar: AppBar(title: Text('Feeds'),),
       backgroundColor: Colors.amberAccent ,
     );
   }

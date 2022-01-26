@@ -1,3 +1,5 @@
+import 'package:e_comaece/widget/empty_cart.dart';
+import 'package:e_comaece/widget/full_cart.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatelessWidget {
@@ -9,6 +11,10 @@ class Cart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      body: SafeArea(
+        child: Full_Cart(),
+
+      ),
 
     );
   }

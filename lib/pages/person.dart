@@ -27,6 +27,7 @@ class _PersonState extends State<Person> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        appBar: AppBar(title: Text('Profile'),),
         body: Stack(
       children: [
         CustomScrollView(
@@ -195,8 +196,8 @@ class _PersonState extends State<Person> {
   }
 
   Widget floating_cam() {
-    double defaultMargin = 195;
-    double scrollstart = 165;
+    double defaultMargin = 175;
+    double scrollstart = 145;
 
     double scrollEnd = scrollstart / 2;
 
