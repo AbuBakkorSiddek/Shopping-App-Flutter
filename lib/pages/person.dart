@@ -1,4 +1,6 @@
+import 'package:e_comaece/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class Person extends StatefulWidget {
   static const routeName = "/feeds";
@@ -31,38 +33,37 @@ class _PersonState extends State<Person> {
           controller: _scrollController,
           slivers: [
             SliverAppBar(
-                pinned: true,
-                stretch: true,
-                expandedHeight: 200,
-                flexibleSpace:LayoutBuilder(builder: (ctx , cons){
-                  top=cons.biggest.height;
-                  return FlexibleSpaceBar(
-                    centerTitle: true,
-                    background: Image.asset(
-                      'images/back.jpg',
-                      fit: BoxFit.cover,
+              pinned: true,
+              stretch: true,
+              expandedHeight: 200,
+              flexibleSpace: LayoutBuilder(builder: (ctx, cons) {
+                top = cons.biggest.height;
+                return FlexibleSpaceBar(
+                  centerTitle: true,
+                  background: Image.asset(
+                    'images/back.jpg',
+                    fit: BoxFit.cover,
+                  ),
+                  title: AnimatedOpacity(
+                    duration: Duration(milliseconds: 3000),
+                    opacity: top <= 200 ? 1.0 : 0.0,
+                    child: Row(
+                      children: const [
+                        SizedBox(
+                          height: 10,
+                          width: 12,
+                        ),
+                        CircleAvatar(
+                            backgroundImage: AssetImage('images/sm.jpg')),
+                        SizedBox(
+                          width: 12,
+                        ),
+                        Text('SIDDEK')
+                      ],
                     ),
-                    title: AnimatedOpacity(
-                      duration: Duration(milliseconds: 3000),
-                      opacity: top <= 200 ? 1.0 : 0.0,
-                      child: Row(
-                        children: const [
-                          SizedBox(
-                            height:10,
-                            width: 12,
-                          ),
-                          CircleAvatar(
-                              backgroundImage: AssetImage('images/sm.jpg')),
-                          SizedBox(
-                            width: 12,
-                          ),
-                          Text('SIDDEK')
-                        ],
-                      ),
-                    ),
-                  );
-
-                }),
+                  ),
+                );
+              }),
             ),
             SliverToBoxAdapter(
               child: Padding(
@@ -107,17 +108,29 @@ class _PersonState extends State<Person> {
                       height: 10,
                     ),
 
-                    Card(
-                        child: SwitchListTile.adaptive(
-                      secondary: Icon(
-                        Icons.light_mode,
-                        color: Colors.yellowAccent,
-                      ),
-                      title: Text('Light Mode'),
-                      value: false,
-                      onChanged: (value) {},
-                    )),
+                    Card(child: Consumer<ThemeNotifire>(
+                        builder: (context, notifire, _) {
+                      return SwitchListTile.adaptive(
+                        secondary: notifire.isDark
+                            ? Icon(
+                                Icons.light_mode,
+                                color: Colors.yellowAccent,
+                              )
+                            : Icon(
+                                Icons.light_mode,
+                                color: Colors.yellowAccent,
+                              ),
+                        title: notifire.isDark
+                            ? Text('Light Mode')
+                            : Text('Light Mode'),
+                        value: notifire.isDark,
+                        onChanged: (value) {
 
+                          notifire.toggleTheme(value);
+
+                        },
+                      );
+                    })),
 
                     Text('User Information'),
 
@@ -135,8 +148,6 @@ class _PersonState extends State<Person> {
                       ticonCallback: () {},
                     ),
 
-
-
                     _card(
                       onTap: () {},
                       licon: Icons.phone_outlined,
@@ -147,8 +158,6 @@ class _PersonState extends State<Person> {
                       ticonCallback: () {},
                     ),
 
-
-
                     _card(
                       onTap: () {},
                       licon: Icons.location_on_outlined,
@@ -158,7 +167,6 @@ class _PersonState extends State<Person> {
                       ticon: Icons.arrow_forward_ios,
                       ticonCallback: () {},
                     ),
-
 
                     _card(
                       onTap: () {},

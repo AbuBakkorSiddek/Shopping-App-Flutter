@@ -4,7 +4,9 @@ import 'package:e_comaece/pages/cart.dart';
 import 'package:e_comaece/pages/feeds.dart';
 import 'package:e_comaece/pages/person.dart';
 import 'package:e_comaece/pages/search.dart';
+import 'package:e_comaece/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,21 +22,33 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const BottomNav(),
-      routes: {
-        BottomNav.routeName:(ctx)=> const BottomNav(),
-        Home.routeName:(ctx)=> const Home(),
-        Feeds.routeName:(ctx)=>const Feeds(),
-        Search.routeName:(ctx)=> Search(),
-        Cart.routeName:(ctx)=>const Cart(),
-        Person.routeName:(ctx)=>const Person(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (ctx) =>ThemeNotifire()),
+      ],
+      child: Consumer<ThemeNotifire>(builder: (context,notifire,_) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            theme: MyAppTheme.myTheme(notifire.isDark, context),
+            home: const BottomNav(),
+            routes: {
+              BottomNav.routeName:(ctx)=> const BottomNav(),
+              Home.routeName:(ctx)=> const Home(),
+              Feeds.routeName:(ctx)=>const Feeds(),
+              Search.routeName:(ctx)=> Search(),
+              Cart.routeName:(ctx)=>const Cart(),
+              Person.routeName:(ctx)=>const Person(),
 
-
-
-      },
+            },
+          );
+        }
+      ),
     );
+
   }
 }
+
+
+
+
 
