@@ -27,172 +27,172 @@ class _PersonState extends State<Person> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Profile'),),
+        appBar: AppBar(
+          title: Text('Profile'),
+        ),
         body: Stack(
-      children: [
-        CustomScrollView(
-          controller: _scrollController,
-          slivers: [
-            SliverAppBar(
-              pinned: true,
-              stretch: true,
-              expandedHeight: 200,
-              flexibleSpace: LayoutBuilder(builder: (ctx, cons) {
-                top = cons.biggest.height;
-                return FlexibleSpaceBar(
-                  centerTitle: true,
-                  background: Image.asset(
-                    'images/back.jpg',
-                    fit: BoxFit.cover,
-                  ),
-                  title: AnimatedOpacity(
-                    duration: Duration(milliseconds: 3000),
-                    opacity: top <= 200 ? 1.0 : 0.0,
-                    child: Row(
-                      children: const [
+          children: [
+            CustomScrollView(
+              controller: _scrollController,
+              slivers: [
+                SliverAppBar(
+                  pinned: true,
+                  stretch: true,
+                  expandedHeight: 200,
+                  flexibleSpace: LayoutBuilder(builder: (ctx, cons) {
+                    top = cons.biggest.height;
+                    return FlexibleSpaceBar(
+                      centerTitle: true,
+                      background: Image.asset(
+                        'images/back.jpg',
+                        fit: BoxFit.cover,
+                      ),
+                      title: AnimatedOpacity(
+                        duration: Duration(milliseconds: 3000),
+                        opacity: top <= 200 ? 1.0 : 0.0,
+                        child: Row(
+                          children: const [
+                            SizedBox(
+                              height: 10,
+                              width: 12,
+                            ),
+                            CircleAvatar(
+                                backgroundImage: AssetImage('images/sm.jpg')),
+                            SizedBox(
+                              width: 12,
+                            ),
+                            Text('SIDDEK')
+                          ],
+                        ),
+                      ),
+                    );
+                  }),
+                ),
+                SliverToBoxAdapter(
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
+                    child: ListView(
+                      primary: false,
+                      shrinkWrap: true,
+                      children: [
+                        //User Bag
+
+                        const _usertilText(
+                          text: 'User Bag',
+                        ),
+                        const SizedBox(
+                          height: 10,
+                        ),
+                        _card(
+                          onTap: () {},
+                          licon: Icons.favorite,
+                          color: Colors.red,
+                          title: 'Wishlist',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
+                        _card(
+                          onTap: () {},
+                          licon: Icons.shopping_cart,
+                          color: Colors.blue,
+                          title: 'Cart',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
                         SizedBox(
                           height: 10,
-                          width: 12,
                         ),
-                        CircleAvatar(
-                            backgroundImage: AssetImage('images/sm.jpg')),
+
+                        Text('User Setting'),
+
                         SizedBox(
-                          width: 12,
+                          height: 10,
                         ),
-                        Text('SIDDEK')
+
+                        Card(child: Consumer<ThemeNotifire>(
+                            builder: (context, notifire, _) {
+                          return SwitchListTile.adaptive(
+                            secondary: notifire.isDark
+                                ? Icon(
+                                    Icons.light_mode,
+                                    color: Colors.yellowAccent,
+                                  )
+                                : Icon(
+                                    Icons.light_mode,
+                                    color: Colors.yellowAccent,
+                                  ),
+                            title: notifire.isDark
+                                ? Text('Light Mode')
+                                : Text('Light Mode'),
+                            value: notifire.isDark,
+                            onChanged: (value) {
+                              notifire.toggleTheme(value);
+                            },
+                          );
+                        })),
+
+                        Text('User Information'),
+
+                        SizedBox(
+                          height: 10,
+                        ),
+
+                        _card(
+                          onTap: () {},
+                          licon: Icons.email,
+                          color: Colors.yellow,
+                          title: 'siddek7277@gmail',
+                          subtitle: 'Email',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
+                        _card(
+                          onTap: () {},
+                          licon: Icons.phone_outlined,
+                          color: Colors.green,
+                          title: '01640302039',
+                          subtitle: 'Phone Number',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
+                        _card(
+                          onTap: () {},
+                          licon: Icons.location_on_outlined,
+                          color: Colors.pink,
+                          title: 'Panthapath,Dhaka-1205',
+                          subtitle: 'address',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
+                        _card(
+                          onTap: () {},
+                          licon: Icons.access_time,
+                          color: Colors.deepPurpleAccent,
+                          title: '1-1-2022',
+                          subtitle: 'Join Date',
+                          ticon: Icons.arrow_forward_ios,
+                          ticonCallback: () {},
+                        ),
+
+                        SizedBox(
+                          height: 10,
+                        ),
                       ],
                     ),
                   ),
-                );
-              }),
+                )
+              ],
             ),
-            SliverToBoxAdapter(
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10.0),
-                child: ListView(
-                  primary: false,
-                  shrinkWrap: true,
-                  children: [
-                    //User Bag
 
-                    const _usertilText(
-                      text: 'User Bag',
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    _card(
-                      onTap: () {},
-                      licon: Icons.favorite,
-                      color: Colors.red,
-                      title: 'Wishlist',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    _card(
-                      onTap: () {},
-                      licon: Icons.shopping_cart,
-                      color: Colors.blue,
-                      title: 'Cart',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    Text('User Setting'),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    Card(child: Consumer<ThemeNotifire>(
-                        builder: (context, notifire, _) {
-                      return SwitchListTile.adaptive(
-                        secondary: notifire.isDark
-                            ? Icon(
-                                Icons.light_mode,
-                                color: Colors.yellowAccent,
-                              )
-                            : Icon(
-                                Icons.light_mode,
-                                color: Colors.yellowAccent,
-                              ),
-                        title: notifire.isDark
-                            ? Text('Light Mode')
-                            : Text('Light Mode'),
-                        value: notifire.isDark,
-                        onChanged: (value) {
-
-                          notifire.toggleTheme(value);
-
-                        },
-                      );
-                    })),
-
-                    Text('User Information'),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-
-                    _card(
-                      onTap: () {},
-                      licon: Icons.email,
-                      color: Colors.yellow,
-                      title: 'siddek7277@gmail',
-                      subtitle: 'Email',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    _card(
-                      onTap: () {},
-                      licon: Icons.phone_outlined,
-                      color: Colors.green,
-                      title: '01640302039',
-                      subtitle: 'Phone Number',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    _card(
-                      onTap: () {},
-                      licon: Icons.location_on_outlined,
-                      color: Colors.pink,
-                      title: 'Panthapath,Dhaka-1205',
-                      subtitle: 'address',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    _card(
-                      onTap: () {},
-                      licon: Icons.access_time,
-                      color: Colors.deepPurpleAccent,
-                      title: '1-1-2022',
-                      subtitle: 'Join Date',
-                      ticon: Icons.arrow_forward_ios,
-                      ticonCallback: () {},
-                    ),
-
-                    SizedBox(
-                      height: 10,
-                    ),
-                  ],
-                ),
-              ),
-            )
+            //Camera & gallery
+            floating_cam(),
           ],
-        ),
-
-        //Camera & gallery
-        floating_cam(),
-      ],
-    ));
+        ));
   }
 
   Widget floating_cam() {
