@@ -20,7 +20,7 @@ class Feeds extends StatelessWidget {
           crossAxisCount: 4,
           itemBuilder: (BuildContext context, int i) => FeedsProduct(),
           staggeredTileBuilder: (int index) =>
-              StaggeredTile.count(2, index.isEven ? 3 : 4),
+              StaggeredTile.count(2, index.isEven ? 3 : 3.5),
           mainAxisSpacing: 10.0,
           crossAxisSpacing: 10.0,
         ),

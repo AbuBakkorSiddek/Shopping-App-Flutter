@@ -17,7 +17,7 @@ class Cart extends StatelessWidget {
           )
         : Scaffold(
             appBar: AppBar(
-              title: Text('Cart'),
+              title: Text('Shopping'),
               actions: [
                 IconButton(
                   onPressed: () {},

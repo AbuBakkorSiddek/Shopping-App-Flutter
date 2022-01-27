@@ -34,7 +34,7 @@ class _BottomNavState extends State<BottomNav> {
 
 
 
-  int _currentIndex=1 ;
+  int _currentIndex=0 ;
 
   _onTop(int i){
     setState((){
