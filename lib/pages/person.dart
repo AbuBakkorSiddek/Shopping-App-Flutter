@@ -57,7 +57,9 @@ class _PersonState extends State<Person> {
                               width: 12,
                             ),
                             CircleAvatar(
-                                backgroundImage: AssetImage('images/sm.jpg')),
+                              backgroundImage: NetworkImage(
+                                  "https://cdn1.vectorstock.com/i/1000x1000/43/20/bearded-man-s-face-hipster-character-fashion-vector-18884320.jpg"),
+                            ),
                             SizedBox(
                               width: 12,
                             ),
