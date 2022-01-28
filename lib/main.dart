@@ -2,6 +2,7 @@ import 'package:e_comaece/pages/Home.dart';
 import 'package:e_comaece/pages/bottomnav.dart';
 import 'package:e_comaece/pages/cart.dart';
 import 'package:e_comaece/pages/feeds.dart';
+import 'package:e_comaece/pages/inner_Page/brands_nav.dart';
 import 'package:e_comaece/pages/person.dart';
 import 'package:e_comaece/pages/search.dart';
 import 'package:e_comaece/provider/theme_provider.dart';
@@ -38,6 +39,8 @@ class _MyAppState extends State<MyApp> {
               Search.routeName:(ctx)=> Search(),
               Cart.routeName:(ctx)=>const Cart(),
               Person.routeName:(ctx)=>const Person(),
+              Brands_Nav.routeName:(ctx)=>const Brands_Nav(),
+
 
             },
           );
