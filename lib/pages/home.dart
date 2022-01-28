@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
   ];
 
   final List<String> _swipImage = [
-    'images/addidas.jpeg',
+    'images/adidas.jpeg',
     'images/apple.jpeg',
     'images/Dell.jpeg',
     'images/h&m.jpeg',
@@ -128,7 +128,10 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
                   ),
                   TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context)
+                          .pushNamed(Brands_Nav.routeName, arguments: 7);
+                    },
                     child: const Text('view all',
                         style: TextStyle(
                             fontWeight: FontWeight.w500, fontSize: 15)),
