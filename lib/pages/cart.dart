@@ -50,7 +50,7 @@ Widget _bottomCheckOutSection() {
           children: [
             Text(
               'Total \$ 579.00',
-              style: TextStyle(color: Colors.white, fontSize: 20),
+              style: TextStyle(color: Colors.red, fontSize: 20),
               overflow: TextOverflow.ellipsis,
             ),
             ElevatedButton(

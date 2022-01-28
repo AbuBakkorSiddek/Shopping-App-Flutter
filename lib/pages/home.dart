@@ -21,14 +21,14 @@ class _HomeState extends State<Home> {
     Image.asset('images/caro4.png'),
   ];
 
-  final List _swipImage = [
-    Image.asset('images/addidas.jpeg'),
-    Image.asset('images/apple.jpeg'),
-    Image.asset('images/Dell.jpeg'),
-    Image.asset('images/h&m.jpeg'),
-    Image.asset('images/Huawei.jpeg'),
-    Image.asset('images/nike.jpeg'),
-    Image.asset('images/samsung.jpeg'),
+  final List<String>_swipImage = [
+      'images/addidas.jpeg',
+      'images/apple.jpeg',
+      'images/Dell.jpeg',
+      'images/h&m.jpeg',
+     'images/Huawei.jpeg',
+     'images/nike.jpeg',
+     'images/samsung.jpeg',
   ];
 
   @override
@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
           children: [
             Container(
                 width: double.infinity,
-                height: 150,
+                height: 200,
                 child: Carousel(
                   images: _CarouselImage,
                   autoplay: true,
@@ -81,12 +81,12 @@ class _HomeState extends State<Home> {
                 children: [
                   Text(
                     'Popular Brands',
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.w900),
                   ),
                   TextButton(
                     onPressed: () {},
                     child: const Text('view all',
-                        style: TextStyle(fontWeight: FontWeight.w400)),
+                        style: TextStyle(fontWeight: FontWeight.w500,fontSize: 15)),
                   )
                 ],
               ),
@@ -95,20 +95,31 @@ class _HomeState extends State<Home> {
               height: 10,
             ),
             Container(
-                height: 150,
+                height: 200,
                 width: double.infinity,
-                child: Swiper(
-                  itemCount: _swipImage.length,
-                  itemBuilder: (ctx, i) {
+                child:  Swiper(
+                  itemBuilder: (BuildContext context, int index) {
                     return Container(
                       decoration: BoxDecoration(
-                        border: Border.all(width: 2, color: Colors.grey),
-                        borderRadius: BorderRadius.circular(12.0),
+                        border: Border.all(width: 2,color: Colors.grey),
+                        borderRadius: BorderRadius.circular(12)
                       ),
-                      child: Image.asset(_swipImage[i]),
+                      child:  Image.asset(
+                        _swipImage[index],
+                        fit: BoxFit.contain,
+                      )
                     );
                   },
-                ))
+                //  indicatorLayout: PageIndicatorLayout.SCALE,
+                  autoplay: true,
+                 // autoplayDelay: 1000,
+                  itemCount: _swipImage.length,
+                  scale: 0.9,
+                 // fade: 1.0,
+                  viewportFraction: 0.8,
+                )
+            )
+
           ],
         ),
       ),
