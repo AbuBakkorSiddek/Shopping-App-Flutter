@@ -1,3 +1,4 @@
+import 'package:e_comaece/pages/wishtList.dart';
 import 'package:e_comaece/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -86,12 +87,16 @@ class _PersonState extends State<Person> {
                           height: 10,
                         ),
                         _card(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.of(context).pushNamed(WishList.routeName);
+                          },
                           licon: Icons.favorite,
                           color: Colors.red,
                           title: 'Wishlist',
                           ticon: Icons.arrow_forward_ios,
-                          ticonCallback: () {},
+                          ticonCallback: () {
+                            Navigator.of(context).pushNamed(WishList.routeName);
+                          },
                         ),
 
                         _card(

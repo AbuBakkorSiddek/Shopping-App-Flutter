@@ -1,3 +1,4 @@
+import 'package:e_comaece/pages/wishtList.dart';
 import 'package:e_comaece/widget/back_layer.dart';
 import 'package:e_comaece/widget/category.dart';
 import 'package:e_comaece/widget/popular_category.dart';
@@ -39,7 +40,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BackdropScaffold(
-        headerHeight: MediaQuery.of(context).size.height * 0.1,
+        headerHeight: MediaQuery.of(context).size.height * 0.4,
         appBar: BackdropAppBar(
           title: const Text(
             'EasyBuy',
@@ -50,6 +51,14 @@ class _HomeState extends State<Home> {
             icon: AnimatedIcons.home_menu,
           ),
           actions: [
+
+            IconButton(
+              onPressed: () {
+                Navigator.of(context).pushNamed(WishList.routeName);
+              },
+              icon: const Icon(Icons.favorite,color: Colors.red,)
+            ),
+            
             IconButton(
               onPressed: () {},
               icon: CircleAvatar(

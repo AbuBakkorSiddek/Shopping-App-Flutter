@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-class Empty_Cart extends StatelessWidget {
-  const Empty_Cart({Key? key}) : super(key: key);
+class EmptyWishList extends StatelessWidget {
+  const EmptyWishList({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,16 +9,16 @@ class Empty_Cart extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Container(
-            margin: EdgeInsets.only(top: 50),
+            margin: EdgeInsets.only(top: 80),
             width: double.infinity,
             height: MediaQuery.of(context).size.height * 0.4,
             decoration: BoxDecoration(
                 image: DecorationImage(
-                    image: AssetImage('images/emptycart.png'),
-                    fit: BoxFit.fill)),
+                    image: AssetImage('images/empty-wishlist.png'),
+                    fit: BoxFit.contain)),
           ),
           Text(
-            'Your Cart is Empty',
+            'Your WishList is Empty',
             style: TextStyle(
                 fontStyle: FontStyle.italic,
                 fontWeight: FontWeight.bold,
@@ -39,7 +37,7 @@ class Empty_Cart extends StatelessWidget {
           ),
 
           SizedBox(
-            height: 30,
+            height: 100,
           ),
 
           Container(

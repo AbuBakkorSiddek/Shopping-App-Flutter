@@ -24,7 +24,7 @@ class _BottomNavState extends State<BottomNav> {
   final List _pages=[
 
     const Home(),
-    const Feeds(),
+     Feeds(),
     const Search(),
     const Cart(),
     const Person(),
